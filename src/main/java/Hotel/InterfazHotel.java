@@ -360,7 +360,12 @@ private void cargarHabitaciones() {
                 cmbMetodoPago.getSelectedItem().toString()
         );
 
-        Reserva reserva = new Reserva(cliente, empleado, habitacion, pago);
+        Reserva reserva = ReservaFactory.crearReserva(
+        cliente,
+        empleado,
+        habitacion,
+        pago
+        );
 
         Contenedor.getInstancia().insertar(reserva);
 
