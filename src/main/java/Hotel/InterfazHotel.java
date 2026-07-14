@@ -9,7 +9,7 @@ private static int contadorId = 1;
         initComponents();
         cargarHabitaciones();
         mostrarId();
-        
+        actualizarMonto();
     }
     
     private void limpiar() {
@@ -17,7 +17,7 @@ private static int contadorId = 1;
     txtCliente.setText("");
     txtDni.setText("");
     txtCorreo.setText("");
-    txtMonto.setText("");
+    
 
     cboTipoHabitacion.setSelectedIndex(0);
     cboHabitacion.setSelectedIndex(0);
@@ -48,6 +48,28 @@ private void cargarHabitaciones() {
     }
 
 }
+private void actualizarMonto() {
+
+    String tipo = cboTipoHabitacion.getSelectedItem().toString();
+
+    double precio;
+
+    switch (tipo) {
+        case "Simple":
+            precio = 40.0;
+            break;
+        case "Doble":
+            precio = 80.0;
+            break;
+        case "Suite":
+            precio = 120.0;
+            break;
+        default:
+            precio = 0.0;
+    }
+
+    lblMontoValor.setText(String.format("S/ %.2f", precio));
+}
    
     /**
      * This method is called from within the constructor to initialize the form.
@@ -68,7 +90,6 @@ private void cargarHabitaciones() {
         txtCliente = new javax.swing.JTextField();
         txtDni = new javax.swing.JTextField();
         txtCorreo = new javax.swing.JTextField();
-        txtMonto = new javax.swing.JTextField();
         lblHabitacion = new javax.swing.JLabel();
         cboTipoHabitacion = new javax.swing.JComboBox<>();
         cmbMetodoPago = new javax.swing.JComboBox<>();
@@ -81,6 +102,7 @@ private void cargarHabitaciones() {
         lblId = new javax.swing.JLabel();
         cboHabitacion = new javax.swing.JComboBox<>();
         btnGestionHabitaciones = new javax.swing.JButton();
+        lblMontoValor = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -204,18 +226,16 @@ private void cargarHabitaciones() {
                         .addComponent(lblCorreo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(17, 17, 17)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(88, 88, 88)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(71, 71, 71)
                                 .addComponent(lblHabitacion)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(cboHabitacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(77, 77, 77)
                                 .addComponent(lblMonto)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblMontoValor, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -284,10 +304,10 @@ private void cargarHabitaciones() {
                             .addComponent(lblHabitacion)
                             .addComponent(cboHabitacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lblMonto)
-                            .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
+                            .addComponent(lblMontoValor, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblMetodoPago)
                     .addComponent(cmbMetodoPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -320,15 +340,14 @@ private void cargarHabitaciones() {
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
           try {
 
-        if (txtCliente.getText().trim().isEmpty() ||
-            txtDni.getText().trim().isEmpty() ||
-            txtCorreo.getText().trim().isEmpty() ||
-            cboHabitacion.getSelectedItem() == null ||
-            txtMonto.getText().trim().isEmpty()) {
+       if (txtCliente.getText().trim().isEmpty() ||
+             txtDni.getText().trim().isEmpty() ||
+             txtCorreo.getText().trim().isEmpty() ||
+             cboHabitacion.getSelectedItem() == null) {   
 
-            JOptionPane.showMessageDialog(this, "Complete todos los campos");
-            return;
-        }
+             JOptionPane.showMessageDialog(this, "Complete todos los campos");
+             return;
+}
 
         if (txtDni.getText().length() != 8) {
             JOptionPane.showMessageDialog(this, "DNI debe tener 8 dígitos");
@@ -356,9 +375,9 @@ private void cargarHabitaciones() {
           habitacion.setDisponible(false);
 
         Pago pago = new Pago(
-                Double.parseDouble(txtMonto.getText()),
-                cmbMetodoPago.getSelectedItem().toString()
-        );
+        habitacion.getPrecio(),
+        cmbMetodoPago.getSelectedItem().toString()
+);
 
         Reserva reserva = ReservaFactory.crearReserva(
         cliente,
@@ -430,6 +449,7 @@ if (txtDni.getText().length() >= 8) {
 
     private void cboTipoHabitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboTipoHabitacionActionPerformed
         cargarHabitaciones();
+        actualizarMonto();
     }//GEN-LAST:event_cboTipoHabitacionActionPerformed
 
     private void btnGestionHabitacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionHabitacionesActionPerformed
@@ -490,11 +510,11 @@ if (txtDni.getText().length() >= 8) {
     private javax.swing.JLabel lblId;
     private javax.swing.JLabel lblMetodoPago;
     private javax.swing.JLabel lblMonto;
+    private javax.swing.JLabel lblMontoValor;
     private javax.swing.JLabel lblTipo;
     private javax.swing.JTextArea txtAreaResultado;
     private javax.swing.JTextField txtCliente;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtDni;
-    private javax.swing.JTextField txtMonto;
     // End of variables declaration//GEN-END:variables
 }

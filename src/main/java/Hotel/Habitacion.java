@@ -59,4 +59,17 @@ public class Habitacion {
                 "Disponible: "
                         + disponible);
     }
+    public double getPrecio() {
+
+        switch (tipo) {
+            case "Simple":
+                return 40.0;
+            case "Doble":
+                return 80.0;
+            case "Suite":
+                return 120.0;
+            default:
+                return 0.0;
+        }
+}
 }

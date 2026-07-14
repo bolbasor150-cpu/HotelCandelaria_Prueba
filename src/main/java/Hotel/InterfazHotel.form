@@ -36,19 +36,17 @@
                       <Component id="lblCorreo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="txtCorreo" min="-2" pref="116" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
                               <Component id="lblHabitacion" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="cboHabitacion" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
                               <Component id="lblMonto" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="txtMonto" min="-2" pref="116" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lblMontoValor" min="-2" pref="129" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -142,13 +140,13 @@
                           <Component id="cboHabitacion" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblMonto" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtMonto" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="lblMonto" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblMontoValor" min="-2" pref="19" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblMetodoPago" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="cmbMetodoPago" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -248,8 +246,6 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtCorreo">
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtMonto">
     </Component>
     <Component class="javax.swing.JLabel" name="lblHabitacion">
       <Properties>
@@ -381,6 +377,8 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGestionHabitacionesActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblMontoValor">
     </Component>
   </SubComponents>
 </Form>
