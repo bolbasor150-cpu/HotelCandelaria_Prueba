@@ -93,6 +93,7 @@ public class Contenedor {
     public String mostrar() {
      if (lista.isEmpty()) {
             return "No hay reservas registradas.";
+            
         }
         StringBuilder texto = new StringBuilder();
 
