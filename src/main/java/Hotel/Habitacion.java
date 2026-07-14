@@ -14,6 +14,7 @@ public class Habitacion {
         this.tipo = tipo;
         this.disponible = disponible;
     }
+    
 
     public int getNumero() {
 
@@ -71,5 +72,11 @@ public class Habitacion {
             default:
                 return 0.0;
         }
+}
+    public double calcularPrecio(int dias) {
+    if (dias <= 1) {
+        return getPrecio();
+    }
+    return getPrecio() + (dias - 1) * 20.0;
 }
 }
