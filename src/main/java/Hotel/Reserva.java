@@ -24,6 +24,20 @@ public class Reserva {
         this.habitacion = habitacion;
         this.pago = pago;
     }
+    public Empleado getEmpleado() {
+
+        return empleado;
+    }
+
+    public Pago getPago() {
+
+        return pago;
+    }
+
+    public void setId(int id) {
+
+        this.id = id;
+    }
 
     public int getId() {
 

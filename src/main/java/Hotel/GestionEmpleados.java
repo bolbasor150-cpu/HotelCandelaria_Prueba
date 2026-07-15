@@ -292,7 +292,11 @@ private void limpiar() {
             java.util.logging.Logger.getLogger(GestionEmpleados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+if (ConexionBD.getConexion() != null) {
+    System.out.println("Conexión exitosa");
+} else {
+    System.out.println("Fallo la conexión");
+}
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
